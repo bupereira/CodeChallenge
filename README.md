@@ -12,7 +12,9 @@ Spring Calculator (2.2.6)
 • REST API que expõe as operações de soma, subtracção, multiplicação e divisão.  
 • Suporte para dois operandos apenas (a e b, por simplicidade).  
 • Suporte para *arbitrary precision signed decimal numbers*.  
-Requisitos Não Funcionais:  
+
+##### Requisitos Não Funcionais:  
+
 • Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  
 • Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  
 • Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  

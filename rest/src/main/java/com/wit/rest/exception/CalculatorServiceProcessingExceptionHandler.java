@@ -1,5 +1,7 @@
 package com.wit.rest.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,19 +13,22 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CalculatorServiceProcessingExceptionHandler extends ResponseEntityExceptionHandler {
+    private static final Logger logger = LoggerFactory.getLogger(CalculatorServiceProcessingExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleInvalidRequest(CalculatorServiceProcessingException e,
                                                           ServletWebRequest request) {
+        logger.info("Inside handler");
         CSPExceptionDetails cspExceptionDetails = new CSPExceptionDetails(
                 e.getHttpStatus().value(),
                 e.getAssignedId(),
                 e.getMessage(),
                 e.getHttpStatus().getReasonPhrase());
-
+        logger.info("building headers");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         logger.info("Error, status " + e.getHttpStatus() + " " + e.getMessage());
-        return handleExceptionInternal(e, cspExceptionDetails, headers, HttpStatus.OK, request);
+        return handleExceptionInternal(e, cspExceptionDetails, headers, HttpStatus.BAD_REQUEST, request);
     }
+
 }

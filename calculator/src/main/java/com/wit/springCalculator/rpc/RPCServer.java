@@ -40,8 +40,6 @@ public class RPCServer {
             logger.info("Now Awaiting RPC requests");
             while(on) {
                 DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                    logger.info("Client : " + delivery.getProperties().getCorrelationId() + "Delivery body: " +
-                            delivery.getBody());
                     AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                             .Builder()
                             .correlationId(delivery.getProperties().getCorrelationId())
@@ -51,6 +49,7 @@ public class RPCServer {
                     logger.info(replyProps.getCorrelationId() + " sent this: " + message);
                     String response = "";
                     try {
+                        logger.info("will run " + message);
                         response = calculatorCore.run(message);
                     } catch (Exception e){
                         response = "ERROR: " + e.getMessage();

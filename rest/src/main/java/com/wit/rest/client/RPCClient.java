@@ -45,12 +45,14 @@ public class RPCClient {
             logger.info("ID assigned to client: " + correlationId + ". Attached message: " + message);
             connection = factory.newConnection();
             channel = connection.createChannel();
+            String finalCorrelationId = correlationId;
             RpcClientParams rpcClientParams = new RpcClientParams()
                     .channel(channel)
+                    .correlationIdSupplier(() -> finalCorrelationId)
                     .exchange("")
                     .routingKey("rpc_queue");
             RpcClient service = new RpcClient(rpcClientParams);
-            String response = service.stringCall(message) + "!!" + correlationId;
+            String response = service.stringCall(message) + "!!" + correlationId; // append correlationId
             logger.info("Response message: " + response);
             connection.close();
             return response;

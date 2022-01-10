@@ -50,6 +50,7 @@ public class CalculatorController {
         CalculatorResponse calculatorResponse = calculatorRestService.send(a, b, mathematicalOperation);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
         return new ResponseEntity<>(calculatorResponse, headers, HttpStatus.OK);
     }
 

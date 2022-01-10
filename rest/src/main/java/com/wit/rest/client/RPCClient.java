@@ -53,7 +53,6 @@ public class RPCClient {
                     .routingKey("rpc_queue");
             RpcClient service = new RpcClient(rpcClientParams);
             String response = service.stringCall(message) + "!!" + correlationId; // append correlationId
-            logger.info("Response message: " + response);
             connection.close();
             return response;
         } catch (Exception e) {

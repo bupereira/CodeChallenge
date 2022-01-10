@@ -18,16 +18,14 @@ public class CalculatorServiceProcessingExceptionHandler extends ResponseEntityE
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleInvalidRequest(CalculatorServiceProcessingException e,
                                                           ServletWebRequest request) {
-        logger.info("Inside handler");
         CSPExceptionDetails cspExceptionDetails = new CSPExceptionDetails(
                 e.getHttpStatus().value(),
                 e.getAssignedId(),
                 e.getMessage(),
                 e.getHttpStatus().getReasonPhrase());
-        logger.info("building headers");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        logger.info("Error, status " + e.getHttpStatus() + " " + e.getMessage());
+        logger.info("Error, status " + e.getHttpStatus() + ", client: " + cspExceptionDetails.getAssignedId() + ", msg: " + e.getMessage());
         return handleExceptionInternal(e, cspExceptionDetails, headers, HttpStatus.BAD_REQUEST, request);
     }
 

@@ -49,7 +49,6 @@ public class RPCServer {
                     logger.info(replyProps.getCorrelationId() + " sent this: " + message);
                     String response = "";
                     try {
-                        logger.info("will run " + message);
                         response = calculatorCore.run(message);
                     } catch (Exception e){
                         response = "ERROR: " + e.getMessage();

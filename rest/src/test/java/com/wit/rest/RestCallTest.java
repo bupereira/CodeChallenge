@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.math.BigDecimal;
+
 @SpringBootTest(classes = RestApplication.class)
 @WebAppConfiguration
 public class RestCallTest {
@@ -23,13 +25,67 @@ public class RestCallTest {
 
     final String BASE_URL = "http://localhost:8080/";
 
-
     @Test
-    public void testRest_Sum_10_5() throws Exception {
+    public void testSum() throws Exception {
         MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
         mockMvc.perform(get("/sum?a=10&b=5"))
                .andExpect(status().isOk())
-               .andExpect(content().contentType("application/json;charset=UTF-8"))
+               .andExpect(content().contentType("application/json"))
                .andExpect(jsonPath("$.result", is(15)));
+    }
+
+    @Test
+    public void testSubtract() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/subtract?a=10&b=5"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.result", is(5)));
+    }
+
+    @Test
+    public void testMultiply() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/multiply?a=10&b=5"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.result", is(50)));
+    }
+
+    @Test
+    public void testDivide() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/divide?a=10&b=5"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.result", is(2)));
+    }
+
+    @Test
+    public void testDivideWithRemainder() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/divide?a=10&b=4"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.result", is(2.5)));
+    }
+
+    @Test
+    public void testDivideWithRepeatingDigits() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/divide?a=10&b=3"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.result", is(new BigDecimal("3.3333333333333333333333333333333333333333333333334"))));
+    }
+
+    @Test
+    public void testDivideByZero() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc.perform(get("/divide?a=10&b=0"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.reasonPhrase", is("Bad Request")))
+                .andExpect(jsonPath("$.message", is("ERROR: Cannot divide by ZERO")));
     }
 }

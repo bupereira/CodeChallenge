@@ -16,10 +16,10 @@ Spring Calculator (2.2.6)
 ##### Requisitos Não Funcionais:  
 
 • Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  -> Feito.  
-• Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2, creio que 2.2.6 foi um erro.  
+• Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2.  
 • Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  -> Feito. Ver observação mais abaixo.  
 • Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. Mas pus os arquivos lá para que não ficassem faltando.  
-• Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito, conforme solicitado. Embora, claro, sendo um projeto Maven, também tenha pom.xml.  
+• Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito. Embora, claro, sendo um projeto Maven, também tenha pom.xml.  
 • Versionamento do trabalho em Git.  -> Feito, neste repositório.   
 
 OBSERVAÇÃO: o RabbitMQ deve ser executado à parte. Eu o rodei com o comando
@@ -35,11 +35,11 @@ http://127.0.0.1:8080/divide?a=1&b=1
 
 ##### Bonus Points (Opcional):  
 
-• Utilização de logback-access para logging do tráfego HTTP (+2).  -> Feito, mas logando para arquivo e console, simultaneamente. O arquivo está sendo salvo no diretório temporário do Java. Em uma máquina Windows, o padrão seria C:\Users\buper\AppData\Local\Temp .  
+• Utilização de logback-access para logging do tráfego HTTP (+2).  -> Feito, mas logando para arquivo e console, simultaneamente.  
 • Atribuição a cada pedido REST individual de um identificador único e comunicação aos clientes do mesmo  
 através de um response header (+3).  -> Feito. Logs mostram o ID designado ao cliente a cada passo.  
 • Propagação deste identificador de request através do MDC na comunicação intermódulo e inclusão do
-mesmo em cada linha de logging que diga respeito a um pedido HTTP em ambos os módulos (+5).  -> O ID é propagado entre módulos.  
+mesmo em cada linha de logging que diga respeito a um pedido HTTP em ambos os módulos (+5).  -> Feito. O ID é propagado entre módulos.  
 
 ##### DELIVERABLES  
 

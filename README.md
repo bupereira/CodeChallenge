@@ -18,7 +18,7 @@ Spring Calculator (2.2.6)
 • Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  -> Feito.  
 • Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2.  
 • Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  -> Feito. Ver observação mais abaixo.  
-• Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. Mas pus os arquivos lá para que não ficassem faltando.  
+• Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. No momento só defino ali os nomes dos logs.  
 • Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito. Embora, claro, sendo um projeto Maven, também tenha pom.xml.  
 • Versionamento do trabalho em Git.  -> Feito, neste repositório.   
 

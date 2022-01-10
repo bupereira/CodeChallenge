@@ -9,18 +9,18 @@ Spring Calculator (2.2.6)
 
 ##### Requisitos Funcionais:  
 
-• REST API que expõe as operações de soma, subtracção, multiplicação e divisão.  -> Feito.
-• Suporte para dois operandos apenas (a e b, por simplicidade).  -> Feito, com estes nomes, exatamente.
-• Suporte para *arbitrary precision signed decimal numbers*.  -> Feito. 
+• REST API que expõe as operações de soma, subtracção, multiplicação e divisão.  -> Feito.  
+• Suporte para dois operandos apenas (a e b, por simplicidade).  -> Feito, com estes nomes, exatamente.  
+• Suporte para *arbitrary precision signed decimal numbers*.  -> Feito.   
 
 ##### Requisitos Não Funcionais:  
 
-• Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  -> Feito
-• Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2.
-• Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  -> Feito. Ver observação mais abaixo.
-• Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. Mas pus os arquivos lá para que não ficassem faltando.
-• Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito, conforme solicitado. Embora, claro, sendo um projeto Maven, também tenha pom.xml.
-• Versionamento do trabalho em Git.  -> Feito, neste repositório.
+• Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  -> Feito.  
+• Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2, creio que 2.2.6 foi um erro.  
+• Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  -> Feito. Ver observação mais abaixo.  
+• Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. Mas pus os arquivos lá para que não ficassem faltando.  
+• Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito, conforme solicitado. Embora, claro, sendo um projeto Maven, também tenha pom.xml.  
+• Versionamento do trabalho em Git.  -> Feito, neste repositório.   
 
 OBSERVAÇÃO: o RabbitMQ deve ser executado à parte. Eu o rodei com o comando
 ```

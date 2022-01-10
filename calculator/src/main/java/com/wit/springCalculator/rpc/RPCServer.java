@@ -6,7 +6,6 @@ import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.DeliverCallback;
 import com.wit.springCalculator.core.CalculatorCore;
 import org.slf4j.Logger;
@@ -38,21 +37,24 @@ public class RPCServer {
             connection = factory.newConnection();
             Channel channel = channelSetup(connection);
 
-            DefaultConsumer consumer = new DefaultConsumer(channel);
             logger.info("Now Awaiting RPC requests");
             while(on) {
-
-
                 DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                    logger.info("Client : " + delivery.getProperties().getCorrelationId() + "Delivery body: " +
+                            delivery.getBody());
                     AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                             .Builder()
                             .correlationId(delivery.getProperties().getCorrelationId())
+                            .contentType("application/json")
                             .build();
                     String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
+                    logger.info(replyProps.getCorrelationId() + " sent this: " + message);
                     String response = "";
                     try {
-
                         response = calculatorCore.run(message);
+                    } catch (Exception e){
+                        response = "ERROR: " + e.getMessage();
+                        logger.info("Returning error to " + delivery.getProperties().getCorrelationId() + ", message: " + response);
                     } finally {
                         channel.basicPublish("", delivery.getProperties().getReplyTo(),
                                 replyProps, response.getBytes(StandardCharsets.UTF_8));

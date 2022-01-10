@@ -16,16 +16,16 @@ public class CalculatorCore {
 
     /**
      * run - The core functionality. Is executed from its overload which receives a string, derives the operation and processes the calculation
-     * @param x The first number to be processed
-     * @param y The second number to be processed
+     * @param a The first number to be processed
+     * @param b The second number to be processed
      * @param mathematicalOperation a supported operation (in the operations package. All operations implement MathematicalOperation)
-     * @return
+     * @return A String with the result
      */
-    public String run(BigDecimal x, BigDecimal y, String mathematicalOperation) {
+    public String run(BigDecimal a, BigDecimal b, String mathematicalOperation) {
 
         try {
             final MathematicalOperation operation = getInstance(mathematicalOperation);
-            return operation.execute(x, y).toString();
+            return operation.execute(a, b).toString();
         } catch (ClassNotFoundException e) {
             logAndThrow("Error finding operation: " + mathematicalOperation);
         } catch (InstantiationException e) {
@@ -44,11 +44,11 @@ public class CalculatorCore {
      * getInstance - Gets an instance of the chosen MathematicalOperation
      * @param mathematicalOperation the Mathematical Operation. Will look into the origin path constant defined below
      * @param <T> Whatever type it is, though currently it's only used for MathematicalOperation implementations.
-     * @return
-     * @throws ClassNotFoundException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
+     * @return Whatever Class type was inferred from the passed in class
+     * @throws ClassNotFoundException If class does not exist
+     * @throws InstantiationException If can't be instantiated
+     * @throws IllegalAccessException If executor gets its access denied
+     * @throws InvocationTargetException if a method or constructor throws an error
      */
     private <T> T getInstance(String mathematicalOperation) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
         final String originPath = "com.wit.springCalculator.operations.";
@@ -61,24 +61,24 @@ public class CalculatorCore {
      *
      * Run is an overload of the run method that opens the passed in string and runs the typed parameter run method
      *
-     * @param wholeMessage
+     * @param wholeMessage The message string
      * @return The response string.
      */
     public String run(String wholeMessage) {
-        BigDecimal x = null, y = null;
+        BigDecimal a = null, b = null;
         String[] splitMsg = wholeMessage.split(",");
         if(splitMsg.length != 3) {
-            logAndThrow("Wrong number of parameters supplied. Acceptable Parameters are (Number) x, (Number) y, (String) operation");
+            logAndThrow("Wrong number of parameters supplied. Acceptable Parameters are (Number) a, (Number) b, (String) operation");
         }
         try {
-            x = new BigDecimal(splitMsg[0]);
-            y = new BigDecimal(splitMsg[1]);
+            a = new BigDecimal(splitMsg[0]);
+            b = new BigDecimal(splitMsg[1]);
         } catch(NumberFormatException e) {
             logAndThrow("One of the supplied arguments is not a number. Please check and resubmit.");
         }
 
         String mathematicalOperation = splitMsg[2];
-        return run(x, y, mathematicalOperation);
+        return run(a, b, mathematicalOperation);
     }
 
     public void logAndThrow(String errorMessage) {

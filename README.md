@@ -35,11 +35,11 @@ http://127.0.0.1:8080/divide?a=1&b=1
 
 ##### Bonus Points (Opcional):  
 
-• Utilização de logback-access para logging do tráfego HTTP (+2).  -> Feito, mas logando para arquivo e console, simultaneamente. O arquivo está sendo salvo no diretório temporário do Java. Em uma máquina Windows, o padrão seria C:\Users\buper\AppData\Local\Temp .
+• Utilização de logback-access para logging do tráfego HTTP (+2).  -> Feito, mas logando para arquivo e console, simultaneamente. O arquivo está sendo salvo no diretório temporário do Java. Em uma máquina Windows, o padrão seria C:\Users\buper\AppData\Local\Temp .  
 • Atribuição a cada pedido REST individual de um identificador único e comunicação aos clientes do mesmo  
-através de um response header (+3).  -> Feito. Logs mostram o ID designado ao cliente a cada passo.
+através de um response header (+3).  -> Feito. Logs mostram o ID designado ao cliente a cada passo.  
 • Propagação deste identificador de request através do MDC na comunicação intermódulo e inclusão do
-mesmo em cada linha de logging que diga respeito a um pedido HTTP em ambos os módulos (+5).  -> O ID é propagado entre módulos.
+mesmo em cada linha de logging que diga respeito a um pedido HTTP em ambos os módulos (+5).  -> O ID é propagado entre módulos.  
 
 ##### DELIVERABLES  
 

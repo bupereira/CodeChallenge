@@ -18,9 +18,9 @@ Spring Calculator (2.2.6)
 • Projecto Gradle ou Maven com pelo menos dois módulos — rest e calculator.  -> Feito
 • Utilização de Spring Boot 2.2.6 como foundation de ambos os módulos.  -> Aqui obtive o aval do Sr. André para utilizar 2.6.2.
 • Utilização de RabbitMQ e Spring AMQP para comunicação intermódulo.  -> Feito. Ver observação mais abaixo.
-• Configuração via application.properties (default do Spring Boot).  
-• Nenhuma configuração XML (com excepção, eventualmente, da de logging).  
-• Versionamento do trabalho em Git.  
+• Configuração via application.properties (default do Spring Boot).  -> Quase não utilizei, não senti necessidade. Mas pus os arquivos lá para que não ficassem faltando.
+• Nenhuma configuração XML (com excepção, eventualmente, da de logging). -> Feito, conforme solicitado. Embora, claro, sendo um projeto Maven, também tenha pom.xml.
+• Versionamento do trabalho em Git.  -> Feito, neste repositório.
 
 OBSERVAÇÃO: o RabbitMQ deve ser executado à parte. Eu o rodei com o comando
 ```
@@ -28,10 +28,10 @@ docker run --rm --hostname rabbit --name rabbit -p 5672:5672 rabbitmq:3.7.3-alpi
 ```
 Uma vez feito isto com sucesso, é só utilizar o IP local e seu cliente de preferência para executar as operações (todas são GET).
 http://127.0.0.1:8080/sum?a=1&b=1 , por exemplo, mostra o JSON de resposta com o ID e o resultado, conforme solicitado.
-As outras operações são subtract, multiply e divide, logo estes URLs devem mostrar resultados satisfatórios:
-http://127.0.0.1:8080/subtract?a=1&b=1 
-http://127.0.0.1:8080/multiply?a=1&b=1 
-http://127.0.0.1:8080/divide?a=1&b=1 
+As outras operações são subtract, multiply e divide, logo estes URLs devem mostrar resultados satisfatórios:  
+http://127.0.0.1:8080/subtract?a=1&b=1  
+http://127.0.0.1:8080/multiply?a=1&b=1  
+http://127.0.0.1:8080/divide?a=1&b=1  
 
 ##### Bonus Points (Opcional):  
 

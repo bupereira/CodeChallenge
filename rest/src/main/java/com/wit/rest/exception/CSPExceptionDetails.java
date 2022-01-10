@@ -1,7 +1,5 @@
 package com.wit.rest.exception;
 
-import java.io.Serializable;
-
 public class CSPExceptionDetails {
     private int statusCode;
     private String message;
